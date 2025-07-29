@@ -133,7 +133,7 @@ satellite_data = [
     {
         "image_path": "images/satellite1.png",
         "button_label": "Go to SXM 7/8",
-        "url": "https://example.com/sxm78"
+        "url": "https://sxmdocumentation.streamlit.app/"
     },
     {
         "image_path": "images/satellite1.png",
@@ -143,7 +143,7 @@ satellite_data = [
     {
         "image_path": "images/satellite2.png",
         "button_label": "Go to SXM 11/12",
-        "url": "https://example.com/sxm1112"
+        "url": "https://sxmdocumentation.streamlit.app/"
     }
 ]
 
