@@ -48,9 +48,9 @@ st.markdown("""
 .emoji-vertical {
   writing-mode: vertical-rl;
   position: fixed;
-  top: 0;
+  top: 40px;
   height: 100vh;
-  font-size: 23px;
+  font-size: 20px;
   color: white;
   font-weight: bold;
   padding: 4px;
@@ -113,7 +113,7 @@ h1, h3 { color: #ffffff; }
 }
 .space-icon {
     position: absolute;
-    font-size: 22px;
+    font-size: 18px;
     color: #ffffff88;
     z-index: 800;
 }
@@ -131,7 +131,7 @@ st.markdown("""
 # --- Satellite Data with External URLs ---
 satellite_data = [
     {
-        "image_path": "images/satellite1.png",
+        "image_path": "images/image.png",
         "button_label": "Go to SXM 7/8",
         "url": "https://sxmdocumentation.streamlit.app/"
     },
