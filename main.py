@@ -11,19 +11,22 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Top Spacer ---
-st.markdown("<div style='margin-top: 50px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='margin-top: 40px;'></div>", unsafe_allow_html=True)
 
 # --- Top Border Image ---
 top_col1, top_col2, top_col3 = st.columns([1, 4, 1])
 with top_col2:
     st.image("images/border.png", width=4000)
 
-# --- Layout Tweak ---
+# --- Layout Tweak for Compact Centering ---
 st.markdown("""
 <style>
 .block-container {
-    padding-top: 20px;
-    margin-top: -60px;
+    padding-top: 10px;
+    margin-top: -40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -62,11 +65,11 @@ h1, h3 {
 </style>
 """, unsafe_allow_html=True)
 
-# --- Title Section (shifted upward slightly) ---
+# --- Title Section (smaller + tighter) ---
 st.markdown("""
-<div style='text-align:center; padding-top:-30px; margin-top:-20px;'>
-    <h1 style='font-size:32px; font-family: Georgia;'>SXM Satellite Directory</h1>
-    <h3 style='font-size:18px;font-family: Georgia;'>Choose your satellite below</h3>
+<div style='text-align:center; padding-top:-20px;margin-top:-20px;'>
+    <h1 style='font-size:26px;font-family: Georgia;'>SXM Satellite Directory</h1>
+    <h3 style='font-size:16px;font-family: Georgia;'>Choose your satellite below</h3>
 </div>
 """, unsafe_allow_html=True)
 
@@ -100,20 +103,20 @@ def resolve_image_path(path_str):
     st.warning(f"⚠️ Could not locate image: {path_str}")
     return None
 
-# --- Image Row ---
-image_cols = st.columns([1, 0.05, 1, 0.05, 1])
+# --- Image Row (smaller width) ---
+image_cols = st.columns([0.85, 0.07, 0.85, 0.07, 0.85])
 for i, sat in enumerate(satellite_data):
     with image_cols[i * 2]:
         try:
             img = Image.open(sat["image_path"])
-            st.image(img, use_container_width=False, width=360)
+            st.image(img, use_container_width=False, width=300)
         except FileNotFoundError:
             st.error(f"🚫 Image not found: {sat['image_path']}")
             resolve_image_path(sat["image_path"])
 
-# --- Button Row with External Links ---
-st.markdown("<br>", unsafe_allow_html=True)
-btn_cols = st.columns([1, 0.05, 1, 0.05, 1])
+# --- Button Row (same style, tighter spacing) ---
+st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
+btn_cols = st.columns([0.85, 0.07, 0.85, 0.07, 0.85])
 for i, sat in enumerate(satellite_data):
     with btn_cols[i * 2]:
         st.markdown(f"""
@@ -125,7 +128,7 @@ for i, sat in enumerate(satellite_data):
 # --- Spacer before Bottom Border ---
 st.markdown("<div style='margin-top: 60px;'></div>", unsafe_allow_html=True)
 
-# --- Bottom Border Image ---
-bot_col1, bot_col2, bot_col3 = st.columns([1, 3, 1])
+# --- Bottom Border Image (slightly wider to match visual size) ---
+bot_col1, bot_col2, bot_col3 = st.columns([1, 4, 1])
 with bot_col2:
     st.image("images/border.png", width=4000)
