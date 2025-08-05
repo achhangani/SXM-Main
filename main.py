@@ -1,130 +1,72 @@
 import streamlit as st
 from PIL import Image
-import random
 from pathlib import Path
 
 # --- UI Cleanup ---
-st.markdown(""" <style> #MainMenu {visibility: hidden;} footer {visibility: hidden;} header {visibility: hidden;} </style> """, unsafe_allow_html=True)
-
-# --- Cosmic Top & Bottom Accent ---
-st.markdown("""
-<style>
-.cosmic-top, .cosmic-bottom {
-    position: fixed;
-    width: 100%;
-    text-align: center;
-    font-size: 22px;
-    color: #ffffff;
-    padding: 6px 0px;
-    z-index: 9999;
-    background-color: transparent;
-    pointer-events: none;
-}
-.cosmic-top { top: 0; right: 0; left: 0; }
-.cosmic-bottom { bottom: 0;right: 0; left: 0; }
-</style>
-
-<div class='cosmic-top'>
-🌠🛰️🌌🔭✨📡🪐🎧🌍💫🎶🚀🎙️🌐🌟🛸🔊🌙🔮📻
-</div>
-<div class='cosmic-bottom'>
-📡🚀🌠💫🌍🎶🎧🔭🪐✨🌌🌟🔊🛸🎙️🌙🔮📻🛰️🌟
-</div>
+st.markdown(""" 
+<style> 
+#MainMenu, footer, header {visibility: hidden;} 
+[data-testid="stSidebar"] { display: none; }
+</style> 
 """, unsafe_allow_html=True)
+
+# --- Top Spacer ---
+st.markdown("<div style='margin-top: 50px;'></div>", unsafe_allow_html=True)
+
+# --- Top Border Image ---
+top_col1, top_col2, top_col3 = st.columns([1, 4, 1])
+with top_col2:
+    st.image("images/border.png", width=4000)
 
 # --- Layout Tweak ---
 st.markdown("""
 <style>
 .block-container {
     padding-top: 20px;
-    margin-top: -40px;
+    margin-top: -60px;
 }
 </style>
 """, unsafe_allow_html=True)
-
-# --- Vertical Borders ---
-st.markdown("""
-<style>
-.emoji-vertical {
-  writing-mode: vertical-rl;
-  position: fixed;
-  top: 40px;
-  height: 100vh;
-  font-size: 20px;
-  color: white;
-  font-weight: bold;
-  padding: 4px;
-  z-index: 1000;
-}
-.emoji-left { left: 0; }
-.emoji-right { right: 0; }
-</style>
-
-<div class="emoji-vertical emoji-left">
-🚀🌌🎧🎙️🛰️📡💫🌍🎧🔭🪐🌚🗼📻✨🔊🌟🎶🛸
-</div>
-<div class="emoji-vertical emoji-right">
-🌚🪐🎧🔊🌠🛰️🌍📻🗼🎵✨🎶🌟💫🔭🎙️🚀🛸📡
-</div>
-""", unsafe_allow_html=True)
-
-# --- Page Setup ---
-st.set_page_config(page_title="🛰️ SXM Satellite Directory", layout="wide")
 
 # --- Styling ---
 st.markdown("""
 <style>
-[data-testid="stSidebar"] { display: none; }
 body {
     background-image: url("https://i.imgur.com/tLJUZFt.png");
     background-size: cover;
     background-attachment: fixed;
 }
-h1, h3 { color: #ffffff; }
-.station-badge {
-    font-size: 13px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #4b3895;
-    padding: 5px 12px;
-    border-radius: 16px;
-    font-family: 'Courier New', Courier, monospace;
+
+h1, h3 {
+    color: #ffffff;
+    font-family: Georgia;
 }
-.stream-visual {
-    font-size: 18px;
-    color: #c9c3ff;
-    margin-top: 2px;
-    font-family: 'Courier New', Courier, monospace;
-}
+
 .sat-btn {
-    background: linear-gradient(135deg, #d5cfff, #e0d8f9);
-    border: none;
-    color: #4b3895;
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
     padding: 12px 20px;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 17px;
     width: 100%;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    font-family: Georgia;
 }
+
 .sat-btn:hover {
-    background: linear-gradient(135deg, #c3b5f3, #d5cfff);
-}
-.space-icon {
-    position: absolute;
-    font-size: 18px;
-    color: #ffffff88;
-    z-index: 800;
+    background-color: #f0f0f0;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# --- Title ---
+# --- Title Section (shifted upward slightly) ---
 st.markdown("""
-<div style='text-align:center; padding-top:0px;'>
-    <h1 style='font-family:Georgia; font-size:32px;'>SXM Satellite Directory</h1>
-    <h3 style='font-family:Georgia; font-size:18px;'>Choose your satellite below</h3>
+<div style='text-align:center; padding-top:-30px; margin-top:-20px;'>
+    <h1 style='font-size:32px; font-family: Georgia;'>SXM Satellite Directory</h1>
+    <h3 style='font-size:18px;font-family: Georgia;'>Choose your satellite below</h3>
 </div>
 """, unsafe_allow_html=True)
 
@@ -179,3 +121,11 @@ for i, sat in enumerate(satellite_data):
                 <button class="sat-btn">{sat['button_label']}</button>
             </a>
         """, unsafe_allow_html=True)
+
+# --- Spacer before Bottom Border ---
+st.markdown("<div style='margin-top: 60px;'></div>", unsafe_allow_html=True)
+
+# --- Bottom Border Image ---
+bot_col1, bot_col2, bot_col3 = st.columns([1, 3, 1])
+with bot_col2:
+    st.image("images/border.png", width=4000)
